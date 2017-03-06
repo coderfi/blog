@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 
 
+# pip install click
+
+
 from __future__ import print_function
 from random import random
 import click
@@ -12,6 +15,11 @@ def forward_multiply_gate(x, y):
 
 @click.group()
 def cli():
+    '''
+    Based on javascript code in the blog by Andrej Karpathy
+    http://karpathy.github.io/neuralnets/
+    '''
+        
     pass
 
 
@@ -23,9 +31,6 @@ def cli():
 def random_local_search(x, y, step_size, steps, F=forward_multiply_gate):
     '''
     Random Local Search example.
-    
-    Based on javascript code in the blog by
-        [Andrej Karpathy](http://karpathy.github.io/neuralnets/)
     
     Usage:
       random_local_search x y
@@ -61,9 +66,6 @@ def numerical_gradient(x, y, step_size, F=forward_multiply_gate):
     '''
     Numerical Gradient example.
     
-    Based on javascript code in the blog by
-        [Andrej Karpathy](http://karpathy.github.io/neuralnets/)
-    
     Usage:
       numerical_gradient start_x start_y
       
@@ -83,7 +85,34 @@ def numerical_gradient(x, y, step_size, F=forward_multiply_gate):
 
     print_result(x, y, best_x, best_y, best_out)
 
+
+@cli.command()
+@click.option('-z', '--step-size', type=float, default=0.01)
+@click.argument('x', type=float, nargs=1)
+@click.argument('y', type=float, nargs=1)
+def analytical_gradient(x, y, step_size, F=forward_multiply_gate):
+    '''
+    Analytical Gradient example.
     
+    Usage:
+      analytical_gradient start_x start_y
+      
+    Examples:
+      analytical_gradient 2 3
+      
+      # use the double dash -- so that negative numbers can be specified
+      analytical_gradient -- 2 -3
+    '''
+    x_gradient = y
+    y_gradient = x
+
+    best_x = x + step_size * x_gradient
+    best_y = y + step_size * y_gradient
+    best_out = F(best_x, best_y)
+
+    print_result(x, y, best_x, best_y, best_out)    
+
+
 def print_result(x, y, best_x, best_y, best_out):
     print("(%.4f, %.4f) -> (%.4f, %.4f) = %.4f" % (
             x, y, best_x, best_y, best_out))
