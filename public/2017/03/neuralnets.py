@@ -13,10 +13,14 @@ def forward_multiply_gate(x, y):
     return x*y
 
 
+F = forward_multiply_gate
+
+
 @click.group()
 def cli():
     '''
-    Based on javascript code in the blog by Andrej Karpathy
+    Example python implementations for `f(x,y) = x*y`.
+    Based on the javascript code in the blog by Andrej Karpathy
     http://karpathy.github.io/neuralnets/
     '''
         
@@ -28,7 +32,7 @@ def cli():
 @click.option('-s', '--steps', type=int, default=1000)
 @click.argument('x', type=float, nargs=1)
 @click.argument('y', type=float, nargs=1)
-def random_local_search(x, y, step_size, steps, F=forward_multiply_gate):
+def random_local_search(x, y, step_size, steps):
     '''
     Random Local Search example.
     
@@ -62,7 +66,7 @@ def random_local_search(x, y, step_size, steps, F=forward_multiply_gate):
 @click.option('-z', '--step-size', type=float, default=0.01)
 @click.argument('x', type=float, nargs=1)
 @click.argument('y', type=float, nargs=1)
-def numerical_gradient(x, y, step_size, F=forward_multiply_gate):
+def numerical_gradient(x, y, step_size):
     '''
     Numerical Gradient example.
     
@@ -90,7 +94,7 @@ def numerical_gradient(x, y, step_size, F=forward_multiply_gate):
 @click.option('-z', '--step-size', type=float, default=0.01)
 @click.argument('x', type=float, nargs=1)
 @click.argument('y', type=float, nargs=1)
-def analytical_gradient(x, y, step_size, F=forward_multiply_gate):
+def analytical_gradient(x, y, step_size):
     '''
     Analytical Gradient example.
     
