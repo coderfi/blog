@@ -28,7 +28,7 @@ def cli():
 
 
 @cli.command()
-@click.option('-z', '--step-size', type=float, default=0.01)
+@click.option('-e', '--step-size', type=float, default=0.01)
 @click.option('-s', '--steps', type=int, default=1000)
 @click.argument('x', type=float, nargs=1)
 @click.argument('y', type=float, nargs=1)
@@ -63,7 +63,7 @@ def random_local_search(x, y, step_size, steps):
 
 
 @cli.command()
-@click.option('-z', '--step-size', type=float, default=0.01)
+@click.option('-e', '--step-size', type=float, default=0.01)
 @click.argument('x', type=float, nargs=1)
 @click.argument('y', type=float, nargs=1)
 def numerical_gradient(x, y, step_size):
@@ -91,7 +91,7 @@ def numerical_gradient(x, y, step_size):
 
 
 @cli.command()
-@click.option('-z', '--step-size', type=float, default=0.01)
+@click.option('-e', '--step-size', type=float, default=0.01)
 @click.argument('x', type=float, nargs=1)
 @click.argument('y', type=float, nargs=1)
 def analytical_gradient(x, y, step_size):

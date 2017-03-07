@@ -20,25 +20,16 @@ def forward_multiply_gate(q, z):
 F = lambda x,y,z: forward_multiply_gate(forward_add_gate(x,y),z)
 
 
-@click.group()
-def cli():
-    '''
-    Example python implementations for `f(x,y,z) = (x+y)*y`.
-    Based on the javascript code in the blog by Andrej Karpathy
-    http://karpathy.github.io/neuralnets/
-    '''
-        
-    pass
-
-
-@cli.command()
+@click.command()
 @click.option('-z', '--step-size', type=float, default=0.01)
 @click.argument('x', type=float, nargs=1)
 @click.argument('y', type=float, nargs=1)
 @click.argument('z', type=float, nargs=1)
-def analytical_gradient(x, y, z, step_size):
+def cli(x, y, z, step_size):
     '''
-    Analytical Gradient example.
+    Example Analytical Gradient python method for `f(x,y,z) = (x+y)*y`.
+    Based on the javascript code in the blog by Andrej Karpathy
+    http://karpathy.github.io/neuralnets/
     
     Usage:
       analytical_gradient start_x start_y start_z
@@ -69,9 +60,29 @@ def analytical_gradient(x, y, z, step_size):
     best_z = z + step_size * derivative_f_wrt_z
     best_out = F(best_x, best_y, best_z)
 
+    print("Analytical Method:")
     print_result(x, y, z, best_x, best_y, best_z, best_out)    
 
 
+    # check via numerical gradient
+    x_derivative = (F(x+step_size, y, z) - F(x, y, z)) / step_size
+    y_derivative = (F(x, y+step_size, z) - F(x, y, z)) / step_size
+    z_derivative = (F(x, y, z+step_size) - F(x, y, z)) / step_size
+    
+    numerical_x = x + step_size * x_derivative
+    numerical_y = y + step_size * y_derivative
+    numerical_z = z + step_size * z_derivative
+    numerical_out = F(numerical_x, numerical_y, numerical_z)
+
+    print("\nNumerical Method:")
+    print_result(x, y, z, numerical_x, numerical_y, numerical_z, numerical_out)    
+
+    if round(best_out, 4) == round(numerical_out, 4):
+        print("\nSimilar answer, WHEW!")
+    else:
+        raise RuntimeError("Expected the same answer. :(")
+
+    
 def print_result(x, y, z, best_x, best_y, best_z, best_out):
     print("(%.4f, %.4f, %.4f) -> (%.4f, %.4f, %.4f) = %.4f" % (
             x, y, z, best_x, best_y, best_z, best_out))
