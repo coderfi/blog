@@ -5,15 +5,13 @@
 
 
 from __future__ import print_function
+from operator import mul
 from random import random
 import click
 
 
-def forward_multiply_gate(x, y):
-    return x*y
-
-
-F = forward_multiply_gate
+# mul is a simple x*y function provided by the python library
+F = mul
 
 
 @click.group()

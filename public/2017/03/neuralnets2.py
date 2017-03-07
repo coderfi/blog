@@ -5,19 +5,12 @@
 
 
 from __future__ import print_function
+from operator import add, mul
 from random import random
 import click
 
 
-def forward_add_gate(x,y):
-    return x+y
-
-
-def forward_multiply_gate(q, z):
-    return q*z
-
-
-F = lambda x,y,z: forward_multiply_gate(forward_add_gate(x,y),z)
+F = lambda x,y,z: mul(add(x,y),z)
 
 
 @click.command()
@@ -41,8 +34,8 @@ def cli(x, y, z, step_size):
       # use the double dash -- so that negative numbers can be specified
       python neuralnets2.py -- -2 5 -4
     '''
-    q = forward_add_gate(x, y)
-    f = forward_multiply_gate(q, z)
+    q = add(x, y)
+    f = mul(q, z)
 
     # gradient of multiply gate
     derivative_f_wrt_z = q
