@@ -27,7 +27,8 @@ F = lambda x,y,z: forward_multiply_gate(forward_add_gate(x,y),z)
 @click.argument('z', type=float, nargs=1)
 def cli(x, y, z, step_size):
     '''
-    Example Analytical Gradient python method for `f(x,y,z) = (x+y)*y`.
+    Python implementation for "Recursive Case: Circuits with Multiple Gates".
+    The circuit implements the mathematical function: `f(x,y,z) = (x+y)*z`.
     Based on the javascript code in the blog by Andrej Karpathy
     http://karpathy.github.io/neuralnets/
     

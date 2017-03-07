@@ -19,7 +19,8 @@ F = forward_multiply_gate
 @click.group()
 def cli():
     '''
-    Example python implementations for `f(x,y) = x*y`.
+    Python implementations for "Base Case: Single Gate in the Circuit".
+    The circuit implements the mathematical function: `f(x,y) = x*y`.
     Based on the javascript code in the blog by Andrej Karpathy
     http://karpathy.github.io/neuralnets/
     '''
