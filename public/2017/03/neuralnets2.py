@@ -33,13 +33,13 @@ def cli(x, y, z, step_size):
     http://karpathy.github.io/neuralnets/
     
     Usage:
-      analytical_gradient start_x start_y start_z
+      python neuralnets2.py start_x start_y start_z
       
     Examples:
-      analytical_gradient 2 3 4
+      python neuralnets2.py 2 3 4
       
       # use the double dash -- so that negative numbers can be specified
-      analytical_gradient -- -2 5 -4
+      python neuralnets2.py -- -2 5 -4
     '''
     q = forward_add_gate(x, y)
     f = forward_multiply_gate(q, z)
