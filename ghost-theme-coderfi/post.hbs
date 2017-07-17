@@ -33,7 +33,7 @@
                 data-width="500px"
                 data-numposts="5"
                 data-colorscheme="light">
-            </div>            
+            </div>    
         </section>
 
         <footer class="post-footer">
@@ -56,8 +56,9 @@
                     <p>Read <a href="{{url}}">more posts</a> by this author.</p>
                 {{/if}}
                 <div class="author-meta">
-                    {{#if location}}<span class="author-location icon-location">{{location}}</span>{{/if}}
+                    {{#if location}}<span class="author-location icon-location">{{location}}</span><br>{{/if}}
                     {{#if website}}<span class="author-link icon-link"><a href="{{website}}">{{website}}</a></span>{{/if}}
+                    <span class="author-link icon-link"><a href="https://github.com/coderfi">https://github.com/coderfi</a></span>
                 </div>
             </section>
 
@@ -77,16 +78,16 @@
                    onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
                     <span class="hidden">Google+</span>
                 </a>
-            </section>
-            <div
-                class="fb-like"
+                <p class="fb-like"
                 data-width="140"
                 data-layout="button"
                 data-action="like"
                 data-size="small"
                 data-share="false"
-                data-show-faces="true">
-            </div>
+                data-show-faces="true"></p>
+            </div>                    
+
+            </section>
         </footer>
 
     </article>
